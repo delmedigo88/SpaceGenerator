@@ -21,7 +21,7 @@ class SpaceGenerator:
     real_test_X = np.concatenate((self.sliding_window_past(W,window_size=self.past_capacity),W.reshape(-1,1),self.sliding_window_future(W,window_size=self.future_capacity)), axis= 1)
     real_test_X = np.stack(SpaceGenOneHotVectorizer.X_to_one_hot_matrix(real_test_X, vocabulary = self.vocabulary, max_len =self.num_features))
     new_data_reshaped = real_test_X.reshape((real_test_X.shape[0], 1, self.num_features*len(self.vocabulary)))
-    predictions = model.predict(new_data_reshaped,verbose=0)
+    predictions = self.model.predict(new_data_reshaped,verbose=0)
     D = [self.prob_to_decision(a) for a in predictions]
     fixed = self.to_correct(W, D)
     return fixed.strip()
