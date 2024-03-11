@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from sklearn.preprocessing import OneHotEncoder
+import re
 
 class SpaceGenerator:
   def __init__(self, model, vocabulary = [-1]):
